@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+
+import WeatherBackground from './components/WeatherBackground';
+
 import getWeatherData from './utils/requestWeather';
 import { getISOIntervalFromNow } from './utils/ISO8601';
 
@@ -19,6 +22,7 @@ function App() {
 				timesteps: '1h',
 				units: 'metric',
 			};
+			console.log('request');
 			getWeatherData(options).then((data) => setAPIdata(data));
 		}
 	});
@@ -28,22 +32,34 @@ function App() {
 		if (APIdata) {
 			const tempData = [];
 			APIdata.forEach((interval) => {
-				tempData.push(interval.values);
+				const tempObject = { ...interval.values };
+				Object.assign(tempObject, { time: interval.startTime });
+				tempData.push(tempObject);
 			});
 			setWeatherData(tempData);
 		}
 	}, [APIdata]);
 
 	useEffect(() => {
-		// console.log(getTimeNow().iso, getISOIntervalFromNow(6));
-	});
+		console.log(weatherData);
+	}, [weatherData]);
+
+	const INTERVAL = 2;
 
 	return (
-		<div className="App">
+		<div>
 			{weatherData && (
-				<p>
-					{weatherData[0].temperature}|{weatherData[0].humidity}|{weatherData[0].cloudCover}
-				</p>
+				<WeatherBackground
+					time={weatherData[INTERVAL].time}
+					sunriseTime={weatherData[INTERVAL].sunriseTime}
+					sunsetTime={weatherData[INTERVAL].sunsetTime}
+					cloudCover={weatherData[INTERVAL].cloudCover}
+				>
+					<p>
+						{weatherData[INTERVAL].temperature}|{weatherData[INTERVAL].humidity}|
+						{weatherData[INTERVAL].cloudCover}
+					</p>
+				</WeatherBackground>
 			)}
 		</div>
 	);
