@@ -12,10 +12,10 @@ const getTimeNow = () => {
 const getISOIntervalFromNow = (variation) => {
 	const now = getTimeNow().raw.getTime();
 	const variationMilliseconds = variation * 60 * 60 * 1000;
-	const interval = {
-		past: convertDateToISO(new Date(now - variationMilliseconds)),
-		future: convertDateToISO(new Date(now + variationMilliseconds)),
-	};
+	const interval = [
+		convertDateToISO(new Date(now - variationMilliseconds)),
+		convertDateToISO(new Date(now + variationMilliseconds)),
+	];
 	return interval;
 };
 

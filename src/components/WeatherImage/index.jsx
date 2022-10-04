@@ -4,7 +4,7 @@ import Moon from './Elements/Moon';
 
 import { ImageContainer, CloudContainer, SunOrMoonContainer } from './styles';
 
-function WeatherImage({ cloudCover = 50, isDay = true }) {
+function WeatherImage({ isDay = true, cloudCover = 50 }) {
 	let cloudSize;
 	let sunSize;
 

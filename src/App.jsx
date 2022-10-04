@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import WeatherBackground from './components/WeatherBackground';
-import WeatherImage from './components/WeatherImage';
 
 import getWeatherData from './utils/requestWeather';
 import { getISOIntervalFromNow } from './utils/ISO8601';
@@ -28,10 +27,7 @@ function App() {
 					'weatherCode', // get thunderstorms
 				],
 				location: [-21.129384, -44.246503],
-				interval: [
-					getISOIntervalFromNow(TIME_INTERVAL_HOURS).past,
-					getISOIntervalFromNow(TIME_INTERVAL_HOURS).future,
-				],
+				interval: getISOIntervalFromNow(TIME_INTERVAL_HOURS),
 				timesteps: '1h',
 				units: 'metric',
 			};
@@ -57,22 +53,7 @@ function App() {
 		console.log(weatherData);
 	}, [weatherData]);
 
-	const INTERVAL = 6;
-
-	return (
-		<div>
-			{weatherData && (
-				<WeatherBackground
-					time={weatherData[INTERVAL].time}
-					sunriseTime={weatherData[INTERVAL].sunriseTime}
-					sunsetTime={weatherData[INTERVAL].sunsetTime}
-					cloudCover={weatherData[INTERVAL].cloudCover}
-				>
-					<WeatherImage />
-				</WeatherBackground>
-			)}
-		</div>
-	);
+	return <div>{weatherData && <WeatherBackground weatherData={weatherData[6]} />}</div>;
 }
 
 export default App;
