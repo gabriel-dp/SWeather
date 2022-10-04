@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import WeatherBackground from './components/WeatherBackground';
+import WeatherImage from './components/WeatherImage';
 
 import getWeatherData from './utils/requestWeather';
 import { getISOIntervalFromNow } from './utils/ISO8601';
@@ -13,7 +14,19 @@ function App() {
 		if (!APIdata) {
 			const options = {
 				apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
-				fields: ['windSpeed', 'temperature', 'humidity', 'cloudCover', 'sunriseTime', 'sunsetTime'],
+				fields: [
+					'windSpeed',
+					'temperature',
+					'humidity',
+					'cloudCover',
+					'sunriseTime',
+					'sunsetTime',
+					'rainIntensity',
+					'freezingRainIntensity',
+					'snowIntensity',
+					'precipitationType',
+					'weatherCode', // get thunderstorms
+				],
 				location: [-21.129384, -44.246503],
 				interval: [
 					getISOIntervalFromNow(TIME_INTERVAL_HOURS).past,
@@ -44,7 +57,7 @@ function App() {
 		console.log(weatherData);
 	}, [weatherData]);
 
-	const INTERVAL = 2;
+	const INTERVAL = 6;
 
 	return (
 		<div>
@@ -55,10 +68,7 @@ function App() {
 					sunsetTime={weatherData[INTERVAL].sunsetTime}
 					cloudCover={weatherData[INTERVAL].cloudCover}
 				>
-					<p>
-						{weatherData[INTERVAL].temperature}|{weatherData[INTERVAL].humidity}|
-						{weatherData[INTERVAL].cloudCover}
-					</p>
+					<WeatherImage />
 				</WeatherBackground>
 			)}
 		</div>
