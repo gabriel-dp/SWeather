@@ -22,7 +22,7 @@ function WeatherBackground({ weatherData }) {
 	// converts all times in milliseconds to use in operations
 	const time = new Date(weatherData.time).getTime();
 	const sunriseTime = new Date(weatherData.sunriseTime).getTime();
-	const sunsetTime = new Date(weatherData.sunriseTime).getTime();
+	const sunsetTime = new Date(weatherData.sunsetTime).getTime();
 
 	const brightness = brightnessFormula(time, sunriseTime, sunsetTime);
 	const grayscale = grayscaleFormula(weatherData.cloudCover);
