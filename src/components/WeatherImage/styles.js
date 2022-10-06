@@ -9,7 +9,7 @@ export const ImageContainer = styled.div`
 
 export const CloudContainer = styled.div`
 	width: ${(props) => props.cloudSize}%;
-	transition: all ease 0.2s;
+	transition: all ease 0.5s;
 	z-index: 3;
 
 	position: absolute;
@@ -19,7 +19,7 @@ export const CloudContainer = styled.div`
 
 export const SunOrMoonContainer = styled.div`
 	width: ${(props) => props.sunSize}%;
-	transition: all ease 0.2s;
+	transition: all ease 0.5s;
 	z-index: 1;
 
 	position: absolute;

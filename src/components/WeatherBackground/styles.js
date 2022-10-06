@@ -5,6 +5,7 @@ const MainBackground = styled.div`
 	height: 100vh;
 
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 
@@ -14,7 +15,7 @@ const MainBackground = styled.div`
 		z-index: -1;
 		width: 100%;
 		height: 100%;
-		transition: all ease 0.2s;
+		transition: all ease 0.5s;
 
 		background-color: #00abf0;
 		filter: brightness(${(props) => props.brightness}%) grayscale(${(props) => props.grayscale}%);
