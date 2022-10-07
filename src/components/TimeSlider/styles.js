@@ -9,6 +9,7 @@ const thumbStyle = `
 	border-radius: 25%;
 	border: none;
 	box-shadow: 0 0 1rem #ffffffaa;
+	filter: drop-shadow(0 0 0.1rem #000000aa);
 `;
 
 const CustomSlider = styled.input.attrs({
@@ -18,7 +19,7 @@ const CustomSlider = styled.input.attrs({
 	width: 60%;
 	max-width: 15rem;
 	height: 0.5rem;
-	background: rgba(225, 225, 225, 0.6);
+	background-color: #ddd;
 	border-radius: 0.25rem;
 
 	::-webkit-slider-thumb {
