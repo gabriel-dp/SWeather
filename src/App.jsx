@@ -1,16 +1,20 @@
 import { useEffect, useState } from 'react';
 
-import WeatherBackground from './components/WeatherBackground';
-
+import usePersistedState from './utils/customHooks/usePersistedState';
 import getWeatherData from './utils/requestWeather';
-import { getISOIntervalFromNow } from './utils/ISO8601';
+import { getTimeNow, getISOIntervalFromNow } from './utils/ISO8601';
+
+import WeatherBackground from './components/WeatherBackground';
 
 function App() {
 	const TIME_INTERVAL_HOURS = 6;
 
-	const [APIdata, setAPIdata] = useState();
+	const [APIdata, setAPIdata] = usePersistedState('previousAPIdata');
 	useEffect(() => {
-		if (!APIdata) {
+		const previousDataIsValid = !APIdata
+			? false
+			: !(getTimeNow().raw.getTime() > new Date(APIdata[6].startTime).getTime() + 1000 * 60 * 60); // checks if data is more than 1 hour late
+		if (!previousDataIsValid) {
 			const options = {
 				apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
 				fields: [
@@ -31,7 +35,6 @@ function App() {
 				timesteps: '1h',
 				units: 'metric',
 			};
-			console.log('request');
 			getWeatherData(options).then((data) => setAPIdata(data));
 		}
 	});
@@ -48,10 +51,6 @@ function App() {
 			setWeatherData(tempData);
 		}
 	}, [APIdata]);
-
-	useEffect(() => {
-		console.log(weatherData);
-	}, [weatherData]);
 
 	return <div>{weatherData && <WeatherBackground weatherData={weatherData[6]} />}</div>;
 }
