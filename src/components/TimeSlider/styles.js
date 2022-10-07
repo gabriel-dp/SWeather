@@ -15,7 +15,7 @@ const CustomSlider = styled.input.attrs({
 	type: 'range',
 })`
 	-webkit-appearance: none;
-	width: 80%;
+	width: 60%;
 	max-width: 15rem;
 	height: 0.5rem;
 	background: rgba(225, 225, 225, 0.6);

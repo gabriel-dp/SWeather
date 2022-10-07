@@ -39,14 +39,14 @@ function WeatherBackground({
 			brightness={brightness}
 			grayscale={grayscale}
 		>
+			<WeatherImage
+				isDay={isDay}
+				cloudCover={weatherData.cloudCover}
+			/>
 			<TimeSlider
 				timeInterval={timeInterval}
 				actualInterval={actualInterval}
 				handleChangeActualInterval={handleChangeActualInterval}
-			/>
-			<WeatherImage
-				isDay={isDay}
-				cloudCover={weatherData.cloudCover}
 			/>
 		</MainBackground>
 	);

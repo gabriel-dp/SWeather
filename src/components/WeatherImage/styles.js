@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const ImageContainer = styled.div`
-	width: 100%;
-	max-width: 25rem;
+	width: 80%;
+	max-width: 20rem;
 	aspect-ratio: 1;
 	position: relative;
 `;
