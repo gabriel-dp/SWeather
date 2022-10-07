@@ -50,12 +50,13 @@ Error generating stack: `+o.message+`
 	border-radius: 25%;
 	border: none;
 	box-shadow: 0 0 1rem #ffffffaa;
+	filter: drop-shadow(0 0 0.1rem #000000aa);
 `,H0=Gr.input.attrs({type:"range"})`
 	-webkit-appearance: none;
 	width: 60%;
 	max-width: 15rem;
 	height: 0.5rem;
-	background: rgba(225, 225, 225, 0.6);
+	background-color: #ddd;
 	border-radius: 0.25rem;
 
 	::-webkit-slider-thumb {
