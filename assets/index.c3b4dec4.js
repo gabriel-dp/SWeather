@@ -100,7 +100,8 @@ Error generating stack: `+o.message+`
 	bottom: ${e=>40*(100-e.sunSize)/100}%;
 `;function o1({isDay:e=!0,cloudCover:t=50}){let n,r;return t<10?(r=100,n=0):t>=80?(r=0,n=100):(n=Math.min(50+t*.625,100),r=Math.max(100-t*.5625,55)),Fs(n1,{children:[Le(r1,{cloudSize:n,children:Le(J0,{})}),Le(i1,{sunSize:r,children:e?Le(b0,{}):Le(t1,{})})]})}const l1=Gr.div`
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
+	height: 100%;
 
 	display: flex;
 	flex-direction: column;
