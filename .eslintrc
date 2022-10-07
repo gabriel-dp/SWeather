@@ -14,7 +14,7 @@
 		"react/prop-types": "off",
 		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
 		"react/react-in-jsx-scope": "off",
-		"react/jsx-filename-extension": [1, { "allow": "as-needed" }],
+		"react/jsx-filename-extension": "off",
 		"no-console": ["error", { "allow": ["warn", "error"] }]
 	}
 }
