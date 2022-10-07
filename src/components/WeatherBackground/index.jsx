@@ -1,3 +1,4 @@
+import TimeSlider from '../TimeSlider';
 import WeatherImage from '../WeatherImage';
 import MainBackground from './styles';
 
@@ -18,7 +19,12 @@ const brightnessFormula = (time, sunriseTime, sunsetTime) => {
 	return brightnessPercentage;
 };
 
-function WeatherBackground({ weatherData }) {
+function WeatherBackground({
+	weatherData,
+	actualInterval,
+	handleChangeActualInterval,
+	timeInterval,
+}) {
 	// converts all times in milliseconds to use in operations
 	const time = new Date(weatherData.time).getTime();
 	const sunriseTime = new Date(weatherData.sunriseTime).getTime();
@@ -33,6 +39,11 @@ function WeatherBackground({ weatherData }) {
 			brightness={brightness}
 			grayscale={grayscale}
 		>
+			<TimeSlider
+				timeInterval={timeInterval}
+				actualInterval={actualInterval}
+				handleChangeActualInterval={handleChangeActualInterval}
+			/>
 			<WeatherImage
 				isDay={isDay}
 				cloudCover={weatherData.cloudCover}
