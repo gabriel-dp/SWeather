@@ -21,6 +21,7 @@ const CustomSlider = styled.input.attrs({
 	height: 0.5rem;
 	background-color: #ddd;
 	border-radius: 0.25rem;
+	margin: 1.5rem 0;
 
 	::-webkit-slider-thumb {
 		${thumbStyle}

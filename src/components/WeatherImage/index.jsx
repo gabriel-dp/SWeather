@@ -4,19 +4,19 @@ import Moon from './Elements/Moon';
 
 import { ImageContainer, CloudContainer, SunOrMoonContainer } from './styles';
 
-function WeatherImage({ isDay = true, cloudCover = 50 }) {
+function WeatherImage({ weatherData }) {
 	let cloudSize;
 	let sunSize;
 
-	if (cloudCover < 10) {
+	if (weatherData.cloudCover < 10) {
 		sunSize = 100;
 		cloudSize = 0;
-	} else if (cloudCover >= 80) {
+	} else if (weatherData.cloudCover >= 80) {
 		sunSize = 0;
 		cloudSize = 100;
 	} else {
-		cloudSize = Math.min(50 + cloudCover * 0.625, 100);
-		sunSize = Math.max(100 - cloudCover * 0.5625, 55);
+		cloudSize = Math.min(50 + weatherData.cloudCover * 0.625, 100);
+		sunSize = Math.max(100 - weatherData.cloudCover * 0.5625, 55);
 	}
 
 	return (
@@ -24,7 +24,9 @@ function WeatherImage({ isDay = true, cloudCover = 50 }) {
 			<CloudContainer cloudSize={cloudSize}>
 				<Cloud />
 			</CloudContainer>
-			<SunOrMoonContainer sunSize={sunSize}>{isDay ? <Sun /> : <Moon />}</SunOrMoonContainer>
+			<SunOrMoonContainer sunSize={sunSize}>
+				{weatherData.isDay ? <Sun /> : <Moon />}
+			</SunOrMoonContainer>
 		</ImageContainer>
 	);
 }

@@ -3,8 +3,8 @@ import { getISOIntervalFromNow } from './ISO8601';
 
 async function getRawData(timeInterval) {
 	const options = {
-		apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
-		// apikey: '88m0aqRGnU9HxVeMenXLYhhsB7UIUA4a',
+		// apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
+		apikey: '88m0aqRGnU9HxVeMenXLYhhsB7UIUA4a',
 		fields: [
 			'windSpeed',
 			'temperature',

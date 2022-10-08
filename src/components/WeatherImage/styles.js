@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const ImageContainer = styled.div`
 	width: 80%;
-	max-width: 20rem;
+	max-width: 15rem;
 	aspect-ratio: 1;
 	position: relative;
+	margin: 1rem 0;
 `;
 
 export const CloudContainer = styled.div`

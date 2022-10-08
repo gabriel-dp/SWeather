@@ -33,6 +33,20 @@ const handleInterval = (weatherData) => {
 	const sunriseTime = new Date(weatherData.sunriseTime).getTime();
 	const sunsetTime = new Date(weatherData.sunsetTime).getTime();
 
+	const localData = new Date(weatherData.time);
+	const localTime = localData.toLocaleString('en-US', {
+		timeZone: 'America/Sao_Paulo',
+		hour: 'numeric',
+		minute: 'numeric',
+		hour12: false,
+	});
+	const localDate = localData.toLocaleString('en-US', {
+		timeZone: 'America/Sao_Paulo',
+		year: 'numeric',
+		month: 'long',
+		day: 'numeric',
+	});
+
 	const intervalHandledData = {
 		time: weatherData.time,
 		isDay: time > sunriseTime && time < sunsetTime,
@@ -51,7 +65,9 @@ const handleInterval = (weatherData) => {
 			brightness: brightnessFormula(time, sunriseTime, sunsetTime),
 			grayscale: grayscaleFormula(weatherData.cloudCover),
 		},
-		place: {
+		local: {
+			date: localDate,
+			time: localTime,
 			city: 'São João del Rei',
 			state: 'Minas Gerais',
 			country: 'Brazil',
