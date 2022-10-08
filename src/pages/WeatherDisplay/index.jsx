@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
 import usePersistedState from '../../utils/customHooks/usePersistedState';
-import getRawData from '../../utils/requestWeather';
-import handleWeatherData from '../../utils/handleWeatherData';
-import { getTimeNow } from '../../utils/ISO8601';
+import getRawData from '../../utils/weatherUtils/requestWeather';
+import handleWeatherData from '../../utils/weatherUtils/handleWeatherData';
+import { getTimeNow } from '../../utils/timeUtils';
 
 import WeatherBackground from '../../components/WeatherBackground';
 import WeatherImage from '../../components/WeatherImage';

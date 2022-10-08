@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getISOIntervalFromNow } from './ISO8601';
+import { getISOIntervalFromNow } from '../timeUtils';
 
 async function getRawData(timeInterval) {
 	const options = {
