@@ -19,17 +19,21 @@ function WeatherDisplay() {
 		setActualInterval(value);
 	};
 
+	let mounted = false;
 	const [weatherData, setWeatherData] = usePersistedState('previousAPIdata', []);
 	useEffect(() => {
-		const previousDataIsValid =
-			weatherData.length === TIME_INTERVAL_HOURS * 2 + 1 && // checks if previous data is valid and checks interval changes
-			getTimeNow().raw.getTime() <
-				new Date(weatherData[TIME_INTERVAL_HOURS].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
-		if (!previousDataIsValid) {
-			getRawData(TIME_INTERVAL_HOURS).then((data) => {
-				setWeatherData(handleWeatherData(data));
-				setActualInterval(TIME_INTERVAL_HOURS);
-			});
+		if (!mounted) {
+			const previousDataIsValid =
+				weatherData.length === TIME_INTERVAL_HOURS * 2 + 1 && // checks if previous data is valid and checks interval changes
+				getTimeNow().raw.getTime() <
+					new Date(weatherData[TIME_INTERVAL_HOURS].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
+			if (!previousDataIsValid) {
+				getRawData(TIME_INTERVAL_HOURS).then((data) => {
+					setWeatherData(handleWeatherData(data));
+					setActualInterval(TIME_INTERVAL_HOURS);
+				});
+			}
+			mounted = true;
 		}
 	});
 
