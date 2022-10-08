@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { getISOIntervalFromNow } from './ISO8601';
 
-async function getWeatherData(timeInterval) {
+async function getRawData(timeInterval) {
 	const options = {
 		apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
 		// apikey: '88m0aqRGnU9HxVeMenXLYhhsB7UIUA4a',
@@ -31,19 +31,10 @@ async function getWeatherData(timeInterval) {
 	}
 	`;
 
-	const promise = axios.get(url);
-	const dataPromise = promise.then((response) => {
-		const originalData = response.data.data.timelines[0].intervals;
-		const tempData = [];
-		originalData.forEach((interval) => {
-			const tempObject = { ...interval.values };
-			Object.assign(tempObject, { time: interval.startTime });
-			tempData.push(tempObject);
-		});
-		return tempData;
-	});
+	const promise = axios.get(url).then((response) => response.data.data.timelines[0].intervals);
+	const dataPromise = promise;
 
 	return dataPromise;
 }
 
-export default getWeatherData;
+export default getRawData;
