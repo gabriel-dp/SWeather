@@ -131,7 +131,7 @@ Error generating stack: `+o.message+`
 	font-size: ${e=>e.size}rem;
 	color: white;
 	text-align: center;
-`;function v1(){const[t,n]=Ie.exports.useState(6),r=l=>{n(l)},[i,o]=jm("previousAPIdata",[]);return Ie.exports.useEffect(()=>{i.length===13&&ip().raw.getTime()<new Date(i[6].time).getTime()+36e5||Gv(6).then(u=>{o(bv(u)),n(6)})}),pe(m1,{children:i.length!==0&&Pr(n1,{weatherData:i[t],children:[Pr(fr,{size:3.5,children:[i[t].temperature,"\xBA"]}),pe(d1,{weatherData:i[t]}),pe(fr,{size:2,children:i[t].local.time}),pe(fr,{size:1.25,children:i[t].local.date}),pe(h1,{timeInterval:6,actualInterval:t,handleChangeActualInterval:r}),pe(fr,{size:1,children:i[t].local.city}),Pr(fr,{size:1,children:[i[t].local.state," - ",i[t].local.country]})]})})}function y1(){return pe(v1,{})}const g1=K0`
+`;function v1(){const[t,n]=Ie.exports.useState(6),r=l=>{n(l)},[i,o]=jm("previousAPIdata",[]);return Ie.exports.useEffect(()=>{i.length===13&&i[6].time&&ip().raw.getTime()<new Date(i[6].time).getTime()+36e5||Gv(6).then(u=>{o(bv(u)),n(6)})}),pe(m1,{children:i.length!==0&&Pr(n1,{weatherData:i[t],children:[Pr(fr,{size:3.5,children:[i[t].temperature,"\xBA"]}),pe(d1,{weatherData:i[t]}),pe(fr,{size:2,children:i[t].local.time}),pe(fr,{size:1.25,children:i[t].local.date}),pe(h1,{timeInterval:6,actualInterval:t,handleChangeActualInterval:r}),pe(fr,{size:1,children:i[t].local.city}),Pr(fr,{size:1,children:[i[t].local.state," - ",i[t].local.country]})]})})}function y1(){return pe(v1,{})}const g1=K0`
     * {
         margin: 0;
         padding: 0;
