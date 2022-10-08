@@ -3,7 +3,7 @@ import { useCallback, useState } from 'react';
 function usePersistedState(key, initialValue) {
 	const [state, setState] = useState(() => {
 		try {
-			const storedValue = localStorage.getItem(key);
+			const storedValue = sessionStorage.getItem(key);
 			return storedValue ? JSON.parse(storedValue) : initialValue;
 		} catch {
 			return initialValue;
@@ -14,7 +14,7 @@ function usePersistedState(key, initialValue) {
 		(value) => {
 			try {
 				setState(value);
-				localStorage.setItem(key, JSON.stringify(value));
+				sessionStorage.setItem(key, JSON.stringify(value));
 			} catch (error) {
 				console.error(error);
 			}
