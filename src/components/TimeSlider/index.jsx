@@ -9,6 +9,7 @@ function TimeSlider({ timeInterval, actualInterval, handleChangeActualInterval }
 			value={actualInterval}
 			step={1}
 			onChange={(event) => handleChangeActualInterval(event.target.value)}
+			aria-label="time-slider"
 		/>
 	);
 }
