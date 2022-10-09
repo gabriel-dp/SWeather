@@ -3,12 +3,12 @@ import styled from 'styled-components';
 const MainBackground = styled.div`
 	width: 100%;
 	height: 100%;
+	padding: 5rem 0;
 	overflow: hidden;
 	position: relative;
 
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
 
 	::before {

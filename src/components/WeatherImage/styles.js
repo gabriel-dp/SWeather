@@ -7,6 +7,7 @@ export const ImageContainer = styled.div`
 	position: relative;
 	margin: 0.5rem 0;
 	overflow: hidden;
+	pointer-events: none;
 	//background-color: red;
 `;
 
