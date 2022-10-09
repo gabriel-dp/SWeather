@@ -20,7 +20,7 @@ function WeatherImage({ weatherData }) {
 		sunSize = Math.max(100 - weatherData.cloudCover * 0.5625, 55);
 	}
 
-	const windDuration = weatherData.windSpeed < 2 ? 0 : 12 / weatherData.windSpeed;
+	const windDuration = weatherData.windSpeed < 5 ? 0 : 12 / weatherData.windSpeed;
 	const windWidth = Math.min(Math.max(25, weatherData.windSpeed * 15), 65);
 
 	return (
@@ -34,6 +34,12 @@ function WeatherImage({ weatherData }) {
 			<Wind
 				windDuration={windDuration}
 				windWidth={windWidth}
+				bottom={13}
+			/>
+			<Wind
+				windDuration={windDuration}
+				windWidth={windWidth}
+				bottom={8}
 			/>
 		</ImageContainer>
 	);
