@@ -29,3 +29,15 @@ export const SunOrMoonContainer = styled.div`
 	left: 0;
 	bottom: ${(props) => (40 * (100 - props.sunSize)) / 100 + 15}%;
 `;
+
+export const WindContainer = styled.div`
+	width: 100%;
+	height: 7%;
+	position: absolute;
+	bottom: 8%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+`;

@@ -16,6 +16,7 @@
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": "off",
 		"react/no-unknown-property": "off",
-		"no-console": ["error", { "allow": ["warn", "error"] }]
+		"no-console": ["error", { "allow": ["warn", "error"] }],
+		"react/style-prop-object": "off"
 	}
 }

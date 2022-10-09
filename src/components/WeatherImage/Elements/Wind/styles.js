@@ -1,18 +1,11 @@
 import styled, { keyframes } from 'styled-components';
 
-export const WindContainer = styled.div`
+export const WindWrapper = styled.div`
 	width: ${(props) => props.windWidth}%;
 	height: 0.25rem;
 	border-radius: 100%;
 	overflow: hidden;
 
-	position: absolute;
-	margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;
-
-	bottom: ${(props) => props.bottom}%;
 	z-index: 4;
 `;
 
@@ -23,9 +16,11 @@ const WindLineAnimation = keyframes`
     100% {
         transform: translateX(-200%);
     }
-    `;
+`;
 
-export const WindLine = styled.div`
+export const WindLine = styled.div.attrs((props) => ({
+	style: { animationDelay: `${props.windDelay}s`, animationDuration: `${props.windDuration}s` },
+}))`
 	height: 100%;
 	width: 100%;
 	background: linear-gradient(to right, #ffffff00, #ddd, #ffffff00);
@@ -34,7 +29,5 @@ export const WindLine = styled.div`
 
 	transform: translateX(100%);
 	animation-name: ${WindLineAnimation};
-	animation-duration: ${(props) => props.windDuration}s;
 	animation-iteration-count: infinite;
-	animation-delay: ${(props) => props.windDelay}s;
 `;

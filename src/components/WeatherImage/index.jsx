@@ -1,9 +1,10 @@
 import Cloud from './Elements/Cloud';
 import Sun from './Elements/Sun';
 import Moon from './Elements/Moon';
-
-import { ImageContainer, CloudContainer, SunOrMoonContainer } from './styles';
 import Wind from './Elements/Wind';
+import Precipitation from './Elements/Precipitation';
+
+import { ImageContainer, CloudContainer, SunOrMoonContainer, WindContainer } from './styles';
 
 function WeatherImage({ weatherData }) {
 	let cloudSize;
@@ -20,27 +21,22 @@ function WeatherImage({ weatherData }) {
 		sunSize = Math.max(100 - weatherData.cloudCover * 0.5625, 55);
 	}
 
-	const windDuration = weatherData.windSpeed < 5 ? 0 : 12 / weatherData.windSpeed;
-	const windWidth = Math.min(Math.max(25, weatherData.windSpeed * 15), 65);
-
 	return (
 		<ImageContainer>
 			<CloudContainer cloudSize={cloudSize}>
 				<Cloud />
+				<Precipitation
+					precipitationData={weatherData.precipitation}
+					windSpeed={weatherData.windSpeed}
+				/>
 			</CloudContainer>
 			<SunOrMoonContainer sunSize={sunSize}>
 				{weatherData.isDay ? <Sun /> : <Moon />}
 			</SunOrMoonContainer>
-			<Wind
-				windDuration={windDuration}
-				windWidth={windWidth}
-				bottom={13}
-			/>
-			<Wind
-				windDuration={windDuration}
-				windWidth={windWidth}
-				bottom={8}
-			/>
+			<WindContainer>
+				<Wind windSpeed={weatherData.windSpeed} />
+				<Wind windSpeed={weatherData.windSpeed} />
+			</WindContainer>
 		</ImageContainer>
 	);
 }
