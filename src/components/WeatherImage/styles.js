@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const ImageContainer = styled.div`
-	width: 80%;
-	max-width: 15rem;
-	aspect-ratio: 1;
+	width: 65%;
+	max-width: 13rem;
+	aspect-ratio: 0.8;
 	position: relative;
-	margin: 1rem 0;
+	margin: 0.5rem 0;
+	overflow: hidden;
+	//background-color: red;
 `;
 
 export const CloudContainer = styled.div`
@@ -15,7 +17,7 @@ export const CloudContainer = styled.div`
 
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	bottom: 15%;
 `;
 
 export const SunOrMoonContainer = styled.div`
@@ -25,5 +27,5 @@ export const SunOrMoonContainer = styled.div`
 
 	position: absolute;
 	left: 0;
-	bottom: ${(props) => (40 * (100 - props.sunSize)) / 100}%;
+	bottom: ${(props) => (40 * (100 - props.sunSize)) / 100 + 15}%;
 `;

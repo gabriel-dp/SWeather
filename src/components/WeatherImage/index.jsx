@@ -3,6 +3,7 @@ import Sun from './Elements/Sun';
 import Moon from './Elements/Moon';
 
 import { ImageContainer, CloudContainer, SunOrMoonContainer } from './styles';
+import Wind from './Elements/Wind';
 
 function WeatherImage({ weatherData }) {
 	let cloudSize;
@@ -19,6 +20,9 @@ function WeatherImage({ weatherData }) {
 		sunSize = Math.max(100 - weatherData.cloudCover * 0.5625, 55);
 	}
 
+	const windDuration = weatherData.windSpeed < 2 ? 0 : 12 / weatherData.windSpeed;
+	const windWidth = Math.min(Math.max(25, weatherData.windSpeed * 15), 65);
+
 	return (
 		<ImageContainer>
 			<CloudContainer cloudSize={cloudSize}>
@@ -27,6 +31,10 @@ function WeatherImage({ weatherData }) {
 			<SunOrMoonContainer sunSize={sunSize}>
 				{weatherData.isDay ? <Sun /> : <Moon />}
 			</SunOrMoonContainer>
+			<Wind
+				windDuration={windDuration}
+				windWidth={windWidth}
+			/>
 		</ImageContainer>
 	);
 }

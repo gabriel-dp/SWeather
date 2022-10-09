@@ -17,10 +17,10 @@ const CustomSlider = styled.input.attrs({
 })`
 	-webkit-appearance: none;
 	width: 60%;
-	max-width: 15rem;
-	height: 0.5rem;
+	max-width: 13rem;
+	height: 0.25rem;
 	background-color: #ddd;
-	border-radius: 0.25rem;
+	border-radius: 0.35rem;
 	margin: 1.5rem 0;
 
 	::-webkit-slider-thumb {
