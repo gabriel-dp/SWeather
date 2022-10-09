@@ -4,6 +4,7 @@ function Moon() {
 	return (
 		<img
 			src={MoonSVG}
+			style={{ width: '100%', aspectRatio: 1 }}
 			alt="moon"
 		/>
 	);
