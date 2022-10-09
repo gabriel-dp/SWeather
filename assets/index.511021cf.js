@@ -73,12 +73,13 @@ Error generating stack: `+o.message+`
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */var J0=$e.exports,Z0=Symbol.for("react.element"),b0=Symbol.for("react.fragment"),e1=Object.prototype.hasOwnProperty,t1=J0.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,n1={key:!0,ref:!0,__self:!0,__source:!0};function kp(e,t,n){var r,i={},o=null,l=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(l=t.ref);for(r in t)e1.call(t,r)&&!n1.hasOwnProperty(r)&&(i[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)i[r]===void 0&&(i[r]=t[r]);return{$$typeof:Z0,type:e,key:o,ref:l,props:i,_owner:t1.current}}Mo.Fragment=b0;Mo.jsx=kp;Mo.jsxs=kp;(function(e){e.exports=Mo})(Hs);const fe=Hs.exports.jsx,Un=Hs.exports.jsxs;function r1({weatherData:e,children:t}){return fe(q0,{brightness:e.background.brightness,grayscale:e.background.grayscale,children:t})}const i1="/SWeather/assets/cloud.d6a242a3.svg";function o1(){return fe("img",{src:i1,alt:"cloud"})}const l1="/SWeather/assets/sun.9c3b898b.svg";function u1(){return fe("img",{src:l1,alt:"sun"})}const s1="/SWeather/assets/moon.0b1ff2a2.svg";function a1(){return fe("img",{src:s1,alt:"moon"})}const c1=At.div`
-	width: 80%;
+	width: 65%;
 	max-width: 15rem;
 	aspect-ratio: 0.8;
 	position: relative;
-	margin: 1rem 0;
+	margin: 0.5rem 0;
 	overflow: hidden;
+	//background-color: red;
 `,f1=At.div`
 	width: ${e=>e.cloudSize}%;
 	transition: all ease 0.5s;
