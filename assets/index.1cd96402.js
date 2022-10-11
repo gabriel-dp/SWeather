@@ -72,7 +72,7 @@ Error generating stack: `+o.message+`
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */var Z0=Le.exports,b0=Symbol.for("react.element"),e1=Symbol.for("react.fragment"),t1=Object.prototype.hasOwnProperty,n1=Z0.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,r1={key:!0,ref:!0,__self:!0,__source:!0};function Cp(e,t,n){var r,i={},o=null,l=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(l=t.ref);for(r in t)t1.call(t,r)&&!r1.hasOwnProperty(r)&&(i[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)i[r]===void 0&&(i[r]=t[r]);return{$$typeof:b0,type:e,key:o,ref:l,props:i,_owner:n1.current}}Mo.Fragment=e1;Mo.jsx=Cp;Mo.jsxs=Cp;(function(e){e.exports=Mo})(Hs);const J=Hs.exports.jsx,an=Hs.exports.jsxs;function i1({weatherData:e,children:t}){return J(J0,{brightness:e.background.brightness,grayscale:e.background.grayscale,children:t})}const o1="/SWeather/assets/cloud.d6a242a3.svg";function l1(){return J("img",{src:o1,style:{width:"100%",aspectRatio:1.5},alt:"cloud"})}const u1="/SWeather/assets/sun.9c3b898b.svg";function s1(){return J("img",{src:u1,style:{width:"100%",aspectRatio:1},alt:"sun"})}const a1="/SWeather/assets/moon.0b1ff2a2.svg";function c1(){return J("img",{src:a1,style:{width:"100%",aspectRatio:1},alt:"moon"})}const f1=lt.div`
+ */var Z0=Le.exports,b0=Symbol.for("react.element"),e1=Symbol.for("react.fragment"),t1=Object.prototype.hasOwnProperty,n1=Z0.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,r1={key:!0,ref:!0,__self:!0,__source:!0};function Cp(e,t,n){var r,i={},o=null,l=null;n!==void 0&&(o=""+n),t.key!==void 0&&(o=""+t.key),t.ref!==void 0&&(l=t.ref);for(r in t)t1.call(t,r)&&!r1.hasOwnProperty(r)&&(i[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps,t)i[r]===void 0&&(i[r]=t[r]);return{$$typeof:b0,type:e,key:o,ref:l,props:i,_owner:n1.current}}Mo.Fragment=e1;Mo.jsx=Cp;Mo.jsxs=Cp;(function(e){e.exports=Mo})(Hs);const J=Hs.exports.jsx,an=Hs.exports.jsxs;function i1({weatherData:e,children:t}){return J(J0,{brightness:e.background.brightness,grayscale:e.background.grayscale,children:t})}const o1="/SWeather/assets/cloud.17951718.svg";function l1(){return J("img",{src:o1,style:{width:"100%",aspectRatio:1},alt:"cloud"})}const u1="/SWeather/assets/sun.ada6a54c.svg";function s1(){return J("img",{src:u1,style:{width:"100%",aspectRatio:1},alt:"sun"})}const a1="/SWeather/assets/moon.9485a461.svg";function c1(){return J("img",{src:a1,style:{width:"100%",aspectRatio:1},alt:"moon"})}const f1=lt.div`
 	width: ${e=>e.windWidth}%;
 	height: 0.25rem;
 	border-radius: 100%;
@@ -96,7 +96,7 @@ Error generating stack: `+o.message+`
 	transform: translateX(100%);
 	animation-name: ${d1};
 	animation-iteration-count: infinite;
-`;function zc({windSpeed:e}){const t=e<5?0:12/e,n=Math.min(Math.max(25,e*15),65),r=Math.random()*3+1;return J(f1,{windWidth:n,children:J(p1,{windDuration:t,windDelay:r})})}const h1="/SWeather/assets/waterdrop.c71f99e0.svg";function m1(){return J("img",{src:h1,style:{width:"100%",aspectRatio:.75},alt:"waterdrop"})}const v1=lt.div`
+`;function zc({windSpeed:e}){const t=e<5?0:12/e,n=Math.min(Math.max(25,e*15),65),r=Math.random()*3+1;return J(f1,{windWidth:n,children:J(p1,{windDuration:t,windDelay:r})})}const h1="/SWeather/assets/waterdrop.ed697958.svg";function m1(){return J("img",{src:h1,style:{width:"100%",aspectRatio:.75},alt:"waterdrop"})}const v1=lt.div`
 	width: 60%;
 	overflow: hidden;
 	height: 60%;
@@ -121,7 +121,7 @@ Error generating stack: `+o.message+`
     }
 	100% {
         transform: translate(${-e}%, 1000%);
-		scale: 0.5;
+		scale: 0.75;
     }
 `,g1=lt.div.attrs(e=>({style:{animationDelay:`${e.dropDelay}s`}}))`
 	width: 10%;
@@ -153,6 +153,7 @@ Error generating stack: `+o.message+`
 	width: ${e=>e.sunSize}%;
 	transition: all ease 0.5s;
 	z-index: 1;
+	padding: 5%;
 
 	position: absolute;
 	left: 0;
