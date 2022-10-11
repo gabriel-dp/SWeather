@@ -27,7 +27,7 @@ const PrecipitationAnimation = (translationX) => keyframes`
     }
 	100% {
         transform: translate(${-translationX}%, 1000%);
-		scale: 0.5;
+		scale: 0.75;
     }
 `;
 

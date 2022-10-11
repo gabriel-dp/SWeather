@@ -1,4 +1,4 @@
-import SunSVG from '../../../assets/sun.svg';
+import SunSVG from '../../../assets/WeatherElements/sun.svg';
 
 function Sun() {
 	return (

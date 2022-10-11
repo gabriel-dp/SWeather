@@ -25,6 +25,7 @@ export const SunOrMoonContainer = styled.div`
 	width: ${(props) => props.sunSize}%;
 	transition: all ease 0.5s;
 	z-index: 1;
+	padding: 5%;
 
 	position: absolute;
 	left: 0;

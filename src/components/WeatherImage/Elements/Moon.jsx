@@ -1,4 +1,4 @@
-import MoonSVG from '../../../assets/moon.svg';
+import MoonSVG from '../../../assets/WeatherElements/moon.svg';
 
 function Moon() {
 	return (

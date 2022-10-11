@@ -1,4 +1,4 @@
-import WaterDropSVG from '../../../../assets/waterdrop.svg';
+import WaterDropSVG from '../../../../assets/WeatherElements/waterdrop.svg';
 
 function Cloud() {
 	return (
