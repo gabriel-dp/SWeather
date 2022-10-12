@@ -36,7 +36,7 @@ export const WindContainer = styled.div`
 	width: 100%;
 	height: 7%;
 	position: absolute;
-	bottom: 8%;
+	bottom: 6%;
 
 	display: flex;
 	flex-direction: column;

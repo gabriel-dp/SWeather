@@ -20,7 +20,7 @@ const MainBackground = styled.div`
 		bottom: 0;
 		transition: all ease 0.5s;
 
-		background-color: #00abf0;
+		background-color: #009bdc;
 		filter: brightness(${(props) => props.brightness}%) grayscale(${(props) => props.grayscale}%);
 	}
 `;
