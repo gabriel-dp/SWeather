@@ -1,9 +1,10 @@
 import { useCallback, useState } from 'react';
 
-function usePersistedState(key, initialValue) {
+function useBrowserStorage(key, initialValue, mode) {
 	const [state, setState] = useState(() => {
 		try {
-			const storedValue = sessionStorage.getItem(key);
+			const storedValue =
+				mode === 'local' ? localStorage.getItem(key) : sessionStorage.getItem(key);
 			return storedValue ? JSON.parse(storedValue) : initialValue;
 		} catch {
 			return initialValue;
@@ -14,7 +15,8 @@ function usePersistedState(key, initialValue) {
 		(value) => {
 			try {
 				setState(value);
-				sessionStorage.setItem(key, JSON.stringify(value));
+				if (mode === 'local') localStorage.setItem(key, JSON.stringify(value));
+				else sessionStorage.setItem(key, JSON.stringify(value));
 			} catch (error) {
 				console.error(error);
 			}
@@ -25,4 +27,4 @@ function usePersistedState(key, initialValue) {
 	return [state, setValue];
 }
 
-export default usePersistedState;
+export default useBrowserStorage;

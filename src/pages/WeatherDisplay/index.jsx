@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import usePersistedState from '../../utils/customHooks/usePersistedState';
+import useBrowserStorage from '../../hooks/useBrowserStorage';
 import getRawData from '../../utils/weatherUtils/requestWeather';
 import handleWeatherData from '../../utils/weatherUtils/handleWeatherData';
 import { getTimeNow } from '../../utils/timeUtils';
@@ -20,7 +20,7 @@ function WeatherDisplay() {
 	};
 
 	let mounted = false;
-	const [weatherData, setWeatherData] = usePersistedState('previousAPIdata', []);
+	const [weatherData, setWeatherData] = useBrowserStorage('previousAPIdata', [], 'session');
 	useEffect(() => {
 		if (!mounted) {
 			const previousDataIsValid =
