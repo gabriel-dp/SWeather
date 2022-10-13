@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
+import { WiHumidity, WiStrongWind } from 'react-icons/wi';
 
 import useBrowserStorage from '../../hooks/useBrowserStorage';
 import getRawData from '../../utils/weatherUtils/requestWeather';
 import handleWeatherData from '../../utils/weatherUtils/handleWeatherData';
 import { getTimeNow } from '../../utils/timeUtils';
+import { DisplayTemperature, DisplaySpeed } from '../../utils/unitsUtils';
 
 import WeatherBackground from '../../components/WeatherBackground';
 import WeatherImage from '../../components/WeatherImage';
 import TimeSlider from '../../components/TimeSlider';
 
-import { Screen, DataText } from './styles';
+import { Screen, DataText, DataIcon } from './styles';
 
-function WeatherDisplay() {
+function WeatherDisplay({ userOptions }) {
 	const TIME_INTERVAL_HOURS = 6;
 
 	const [actualInterval, setActualInterval] = useState(TIME_INTERVAL_HOURS);
@@ -37,22 +39,37 @@ function WeatherDisplay() {
 		}
 	});
 
+	const data = weatherData[actualInterval];
+
 	return (
 		<Screen>
 			{weatherData.length !== 0 && (
-				<WeatherBackground weatherData={weatherData[actualInterval]}>
-					<DataText size={3.5}>{weatherData[actualInterval].temperature}°</DataText>
-					<WeatherImage weatherData={weatherData[actualInterval]} />
-					<DataText size={2}>{weatherData[actualInterval].local.time}</DataText>
-					<DataText size={1.25}>{weatherData[actualInterval].local.date}</DataText>
+				<WeatherBackground weatherData={data}>
+					<DataText size={3.5}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
+					<WeatherImage weatherData={data} />
+					<DataText size={2}>{data.local.time}</DataText>
+					<DataText size={1.25}>{data.local.date}</DataText>
+					<DataText size={1.25}>
+						<DataIcon size={1}>
+							<WiStrongWind />
+						</DataIcon>
+						&nbsp;{DisplaySpeed(data.windSpeed, userOptions.units)}
+						&nbsp;&nbsp;&nbsp;
+						<DataIcon size={1}>
+							<WiHumidity />
+						</DataIcon>
+						&nbsp;
+						{data.humidity}%
+					</DataText>
 					<TimeSlider
 						timeInterval={TIME_INTERVAL_HOURS}
 						actualInterval={actualInterval}
 						handleChangeActualInterval={handleChangeActualInterval}
 					/>
-					<DataText size={1}>{weatherData[actualInterval].local.city}</DataText>
 					<DataText size={1}>
-						{weatherData[actualInterval].local.state} - {weatherData[actualInterval].local.country}
+						{data.local.city}
+						<br />
+						{data.local.state} - {data.local.country}
 					</DataText>
 				</WeatherBackground>
 			)}

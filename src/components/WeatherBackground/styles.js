@@ -10,6 +10,8 @@ const MainBackground = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
+	gap: 0.25rem;
 
 	::before {
 		content: '';

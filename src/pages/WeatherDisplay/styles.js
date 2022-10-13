@@ -10,3 +10,7 @@ export const DataText = styled.span`
 	color: white;
 	text-align: center;
 `;
+
+export const DataIcon = styled.span`
+	font-size: ${(props) => props.size}rem;
+`;

@@ -1,3 +1,5 @@
+// The metric system is the default system for calculations
+
 const units = {
 	metric: {
 		temperature: '°C',
