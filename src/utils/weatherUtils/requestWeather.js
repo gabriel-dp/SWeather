@@ -17,6 +17,7 @@ async function getRawData(timeInterval) {
 			'snowIntensity',
 			'precipitationType',
 			'weatherCode', // get thunderstorms
+			'precipitationProbability',
 		],
 		location: [-21.129384, -44.246503],
 		interval: getISOIntervalFromNow(timeInterval),

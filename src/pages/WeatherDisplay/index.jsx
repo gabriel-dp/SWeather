@@ -41,7 +41,7 @@ function WeatherDisplay() {
 		<Screen>
 			{weatherData.length !== 0 && (
 				<WeatherBackground weatherData={weatherData[actualInterval]}>
-					<DataText size={3.5}>{weatherData[actualInterval].temperature}º</DataText>
+					<DataText size={3.5}>{weatherData[actualInterval].temperature}°</DataText>
 					<WeatherImage weatherData={weatherData[actualInterval]} />
 					<DataText size={2}>{weatherData[actualInterval].local.time}</DataText>
 					<DataText size={1.25}>{weatherData[actualInterval].local.date}</DataText>

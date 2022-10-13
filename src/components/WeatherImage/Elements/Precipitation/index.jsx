@@ -1,9 +1,13 @@
 import WaterDrop from './WaterDrop';
 import { PrecipitationContainer, ParticleContainer } from './styles';
 
-function Precipitation({ precipitationData, windSpeed }) {
-	const particlesQuantity = Math.min(25, Math.ceil(Math.sqrt(precipitationData.rain * 15)));
-	const translationX = windSpeed < 5 ? 0 : 1000 * Math.sin(Math.min(windSpeed, 20) / 25);
+function Precipitation({ precipitationData, windSpeed, MAX_PARTICLES, MIN_WIND_SPEED }) {
+	const particlesQuantity = Math.min(
+		MAX_PARTICLES,
+		Math.ceil(Math.sqrt(precipitationData.rain * 15))
+	);
+	const translationX =
+		windSpeed < MIN_WIND_SPEED ? 0 : 1000 * Math.sin(Math.min(windSpeed, 20) / 25);
 	return (
 		<PrecipitationContainer state={precipitationData.state}>
 			{Array(particlesQuantity)
