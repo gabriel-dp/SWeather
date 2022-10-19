@@ -1,25 +1,36 @@
 import WeatherDisplay from './pages/WeatherDisplay';
 import useBrowserStorage from './hooks/useBrowserStorage';
+import getGeolocation from './utils/locationUtils';
 
 function App() {
 	const [userOptions, setUserOptions] = useBrowserStorage(
 		'userOptions',
 		{
-			local: '',
+			local: {
+				coords: [],
+				address: {
+					town: '',
+					country: '',
+				},
+			},
 			units: 'metric',
 		},
-		'local'
+		'session'
 	);
 
-	const handleChangeUserOptions = (options) => {
-		setUserOptions(options);
+	const handleChangeUserOptions = (newOptions) => {
+		const aux = { newOptions };
+		setUserOptions(aux);
 	};
 
+	getGeolocation(userOptions, handleChangeUserOptions);
+
 	return (
-		<WeatherDisplay
-			userOptions={userOptions}
-			handleChangeUserOptions={handleChangeUserOptions}
-		/>
+		<div>
+			{userOptions && userOptions.local.coords.length !== 0 && (
+				<WeatherDisplay userOptions={userOptions} />
+			)}
+		</div>
 	);
 }
 

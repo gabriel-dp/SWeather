@@ -53,9 +53,6 @@ const handleInterval = (weatherData) => {
 		local: {
 			date: localDate,
 			time: localTime,
-			city: 'São João del Rei',
-			state: 'Minas Gerais',
-			country: 'Brazil',
 		},
 	};
 	return intervalHandledData;

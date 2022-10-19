@@ -31,7 +31,7 @@ function WeatherDisplay({ userOptions }) {
 					new Date(weatherData[TIME_INTERVAL_HOURS].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
 			if (!previousDataIsValid) {
 				getRawData(TIME_INTERVAL_HOURS).then((data) => {
-					setWeatherData(handleWeatherData(data));
+					setWeatherData(handleWeatherData(data, userOptions));
 					setActualInterval(TIME_INTERVAL_HOURS);
 				});
 			}
