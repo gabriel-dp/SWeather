@@ -11,7 +11,7 @@ const fixRawData = (rawData) => {
 	return tempData;
 };
 
-const handleInterval = (weatherData) => {
+const handleInterval = (weatherData, userOptions) => {
 	// converts all times in milliseconds to use in operations
 	const time = new Date(weatherData.time).getTime();
 	const sunriseTime = new Date(weatherData.sunriseTime).getTime();
@@ -53,18 +53,18 @@ const handleInterval = (weatherData) => {
 		local: {
 			date: localDate,
 			time: localTime,
-			city: 'São João del Rei',
-			state: 'Minas Gerais',
-			country: 'Brazil',
+			city: userOptions.local.address.city,
+			state_province_area: userOptions.local.address.state_province_area,
+			country: userOptions.local.address.country,
 		},
 	};
 	return intervalHandledData;
 };
 
-function handleWeatherData(rawData) {
+function handleWeatherData(rawData, userOptions) {
 	const handledData = [];
 	fixRawData(rawData).forEach((interval) => {
-		handledData.push(handleInterval(interval));
+		handledData.push(handleInterval(interval, userOptions));
 	});
 	return handledData;
 }

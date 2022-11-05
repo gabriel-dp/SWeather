@@ -9,7 +9,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["react"],
+	"plugins": ["react", "react-hooks"],
 	"rules": {
 		"react/prop-types": "off",
 		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
@@ -17,6 +17,8 @@
 		"react/jsx-filename-extension": "off",
 		"react/no-unknown-property": "off",
 		"no-console": ["error", { "allow": ["warn", "error"] }],
-		"react/style-prop-object": "off"
+		"react/style-prop-object": "off",
+		"react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+		"react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
 	}
 }

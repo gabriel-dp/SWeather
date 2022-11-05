@@ -14,30 +14,24 @@ import TimeSlider from '../../components/TimeSlider';
 import { Screen, DataText, DataIcon } from './styles';
 
 function WeatherDisplay({ userOptions }) {
-	const TIME_INTERVAL_HOURS = 6;
-
-	const [actualInterval, setActualInterval] = useState(TIME_INTERVAL_HOURS);
+	const [actualInterval, setActualInterval] = useState(userOptions.timeInterval);
 	const handleChangeActualInterval = (value) => {
 		setActualInterval(value);
 	};
 
-	let mounted = false;
 	const [weatherData, setWeatherData] = useBrowserStorage('previousAPIdata', [], 'session');
 	useEffect(() => {
-		if (!mounted) {
-			const previousDataIsValid =
-				weatherData.length === TIME_INTERVAL_HOURS * 2 + 1 && // checks if previous data is valid and checks interval changes
-				getTimeNow().raw.getTime() <
-					new Date(weatherData[TIME_INTERVAL_HOURS].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
-			if (!previousDataIsValid) {
-				getRawData(TIME_INTERVAL_HOURS).then((data) => {
-					setWeatherData(handleWeatherData(data));
-					setActualInterval(TIME_INTERVAL_HOURS);
-				});
-			}
-			mounted = true;
+		const previousDataIsValid =
+			weatherData.length === userOptions.timeInterval * 2 + 1 &&
+			getTimeNow().raw.getTime() <
+				new Date(weatherData[userOptions.timeInterval].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
+		if (!previousDataIsValid) {
+			getRawData(userOptions.timeInterval).then((data) => {
+				setWeatherData(handleWeatherData(data, userOptions));
+				setActualInterval(userOptions.timeInterval);
+			});
 		}
-	});
+	}, [weatherData, setWeatherData, userOptions, actualInterval]);
 
 	const data = weatherData[actualInterval];
 
@@ -62,14 +56,14 @@ function WeatherDisplay({ userOptions }) {
 						{data.humidity}%
 					</DataText>
 					<TimeSlider
-						timeInterval={TIME_INTERVAL_HOURS}
+						timeInterval={userOptions.timeInterval}
 						actualInterval={actualInterval}
 						handleChangeActualInterval={handleChangeActualInterval}
 					/>
 					<DataText size={1}>
 						{data.local.city}
 						<br />
-						{data.local.state} - {data.local.country}
+						{data.local.state_province_area} - {data.local.country}
 					</DataText>
 				</WeatherBackground>
 			)}
