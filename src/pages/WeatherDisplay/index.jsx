@@ -6,6 +6,7 @@ import getRawData from '../../utils/weatherUtils/requestWeather';
 import handleWeatherData from '../../utils/weatherUtils/handleWeatherData';
 import { getTimeNow } from '../../utils/timeUtils';
 import { DisplayTemperature, DisplaySpeed } from '../../utils/unitsUtils';
+import getGeolocation from '../../utils/locationUtils';
 
 import WeatherBackground from '../../components/WeatherBackground';
 import WeatherImage from '../../components/WeatherImage';
@@ -13,25 +14,34 @@ import TimeSlider from '../../components/TimeSlider';
 
 import { Screen, DataText, DataIcon } from './styles';
 
-function WeatherDisplay({ userOptions }) {
+function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 	const [actualInterval, setActualInterval] = useState(userOptions.timeInterval);
 	const handleChangeActualInterval = (value) => {
 		setActualInterval(value);
 	};
 
+	useEffect(() => {
+		if (userOptions.local.address.city === '') {
+			getGeolocation(userOptions, handleChangeUserOptions);
+		}
+	}, [userOptions, handleChangeUserOptions]);
+
 	const [weatherData, setWeatherData] = useBrowserStorage('previousAPIdata', [], 'session');
 	useEffect(() => {
-		const previousDataIsValid =
-			weatherData.length === userOptions.timeInterval * 2 + 1 &&
-			getTimeNow().raw.getTime() <
-				new Date(weatherData[userOptions.timeInterval].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
-		if (!previousDataIsValid) {
-			getRawData(userOptions.timeInterval).then((data) => {
-				setWeatherData(handleWeatherData(data, userOptions));
-				setActualInterval(userOptions.timeInterval);
-			});
+		if (userOptions.local.address.city !== '') {
+			const previousDataIsValid =
+				weatherData.length === userOptions.timeInterval * 2 + 1 && // checks if previous data is valid and checks interval changes
+				getTimeNow().raw.getTime() <
+					new Date(weatherData[userOptions.timeInterval].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
+
+			if (!previousDataIsValid) {
+				getRawData(userOptions.timeInterval, userOptions.local.coords).then((data) => {
+					setWeatherData(handleWeatherData(data, userOptions));
+					setActualInterval(userOptions.timeInterval);
+				});
+			}
 		}
-	}, [weatherData, setWeatherData, userOptions, actualInterval]);
+	}, [userOptions.local.address.city, userOptions, weatherData, setWeatherData, setActualInterval]);
 
 	const data = weatherData[actualInterval];
 

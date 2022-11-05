@@ -2,33 +2,37 @@ import WeatherDisplay from './pages/WeatherDisplay';
 import useBrowserStorage from './hooks/useBrowserStorage';
 
 function App() {
-	const [userOptions, setUserOptions] = useBrowserStorage('userOptions', {}, 'session');
-
-	// sets default data for userOptions
-	if (Object.keys(userOptions).length === 0) {
-		setUserOptions({
+	const [userOptions, setUserOptions] = useBrowserStorage(
+		'userOptions',
+		{
 			local: {
-				coords: [-21, 44],
+				coords: [],
 				address: {
-					city: 'Resende Costa',
-					state_province_area: 'Minas Gerais',
-					country: 'Brazil',
+					city: '',
+					state_province_area: '',
+					country: '',
 				},
 			},
 			units: 'metric',
 			timeInterval: 6,
-		});
-	}
+		},
+		'session'
+	);
 
-	const handleChangeUserOptions = (options) => {
-		setUserOptions(options);
+	const handleChangeUserOptions = (newOptions) => {
+		const aux = { ...newOptions };
+		setUserOptions(aux);
 	};
 
 	return (
-		<WeatherDisplay
-			userOptions={userOptions}
-			handleChangeUserOptions={handleChangeUserOptions}
-		/>
+		<div>
+			{userOptions && (
+				<WeatherDisplay
+					userOptions={userOptions}
+					handleChangeUserOptions={handleChangeUserOptions}
+				/>
+			)}
+		</div>
 	);
 }
 

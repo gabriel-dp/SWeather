@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { getISOIntervalFromNow } from '../timeUtils';
 
-async function getRawData(timeInterval) {
+async function getRawData(timeInterval, coords) {
 	const options = {
-		// apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
-		apikey: '88m0aqRGnU9HxVeMenXLYhhsB7UIUA4a',
+		apikey: 'K0BKOLcvnW2dswAega7fkYkTm4eTKv1T',
+		// apikey: '88m0aqRGnU9HxVeMenXLYhhsB7UIUA4a',
 		fields: [
 			'windSpeed',
 			'temperature',
@@ -19,7 +19,7 @@ async function getRawData(timeInterval) {
 			'weatherCode', // get thunderstorms
 			'precipitationProbability',
 		],
-		location: [-21.129384, -44.246503],
+		location: coords,
 		interval: getISOIntervalFromNow(timeInterval),
 		timesteps: '1h',
 		units: 'metric',
