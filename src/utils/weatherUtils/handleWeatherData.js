@@ -24,12 +24,6 @@ const handleInterval = (weatherData, userOptions) => {
 		minute: 'numeric',
 		hour12: false,
 	});
-	const localDate = localData.toLocaleString('en-US', {
-		timeZone: 'America/Sao_Paulo',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	});
 
 	const intervalHandledData = {
 		time: weatherData.time,
@@ -51,7 +45,6 @@ const handleInterval = (weatherData, userOptions) => {
 			grayscale: grayscaleFormula(weatherData.cloudCover),
 		},
 		local: {
-			date: localDate,
 			time: localTime,
 			city: userOptions.local.address.city,
 			state_province_area: userOptions.local.address.state_province_area,

@@ -9,7 +9,7 @@ export const ImageContainer = styled.div`
 	overflow: hidden;
 	pointer-events: none;
 
-	@media screen and (max-height: 525px) {
+	@media screen and (max-height: 500px) {
 		display: none;
 	}
 `;

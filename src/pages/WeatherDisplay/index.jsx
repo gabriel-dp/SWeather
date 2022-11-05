@@ -49,10 +49,9 @@ function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 		<Screen>
 			{weatherData.length !== 0 && (
 				<WeatherBackground weatherData={data}>
-					<DataText size={3.5}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
+					<DataText size={3}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
 					<WeatherImage weatherData={data} />
 					<DataText size={2}>{data.local.time}</DataText>
-					<DataText size={1.25}>{data.local.date}</DataText>
 					<DataText size={1.25}>
 						<DataIcon size={1}>
 							<WiStrongWind />
