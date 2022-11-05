@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const MainBackground = styled.div`
 	width: 100%;
 	height: 100%;
-	padding: 5rem 0;
+	padding: 2rem 0;
 	overflow: hidden;
 	position: relative;
 

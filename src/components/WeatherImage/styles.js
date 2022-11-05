@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 
 export const ImageContainer = styled.div`
-	width: 65%;
-	max-width: 13rem;
-	aspect-ratio: 0.8;
+	width: 30vh;
+	max-width: 15rem;
+	aspect-ratio: 0.85;
 	position: relative;
 	margin: 0.5rem 0;
 	overflow: hidden;
 	pointer-events: none;
-	//background-color: red;
+
+	@media screen and (max-height: 525px) {
+		display: none;
+	}
 `;
 
 export const CloudContainer = styled.div`
