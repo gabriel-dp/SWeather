@@ -31,6 +31,7 @@ async function getGeolocation(userOptions, handleChangeUserOptions) {
 				coords: [latitude, longitude],
 				address: {
 					town: response.data.name,
+					stateProvinceArea: response.data.address.state,
 					country: response.data.address.country,
 				},
 			};

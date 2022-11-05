@@ -6,6 +6,7 @@ import getRawData from '../../utils/weatherUtils/requestWeather';
 import handleWeatherData from '../../utils/weatherUtils/handleWeatherData';
 import { getTimeNow } from '../../utils/timeUtils';
 import { DisplayTemperature, DisplaySpeed } from '../../utils/unitsUtils';
+import getGeolocation from '../../utils/locationUtils';
 
 import WeatherBackground from '../../components/WeatherBackground';
 import WeatherImage from '../../components/WeatherImage';
@@ -13,7 +14,7 @@ import TimeSlider from '../../components/TimeSlider';
 
 import { Screen, DataText, DataIcon } from './styles';
 
-function WeatherDisplay({ userOptions }) {
+function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 	const TIME_INTERVAL_HOURS = 6;
 
 	const [actualInterval, setActualInterval] = useState(TIME_INTERVAL_HOURS);
@@ -30,9 +31,12 @@ function WeatherDisplay({ userOptions }) {
 				getTimeNow().raw.getTime() <
 					new Date(weatherData[TIME_INTERVAL_HOURS].time).getTime() + 1000 * 60 * 60; // checks if data is more than 1 hour late
 			if (!previousDataIsValid) {
-				getRawData(TIME_INTERVAL_HOURS).then((data) => {
-					setWeatherData(handleWeatherData(data, userOptions));
-					setActualInterval(TIME_INTERVAL_HOURS);
+				console.warn('aeee');
+				getGeolocation(userOptions, handleChangeUserOptions).then(() => {
+					getRawData(TIME_INTERVAL_HOURS).then((data) => {
+						setWeatherData(handleWeatherData(data, userOptions));
+						setActualInterval(TIME_INTERVAL_HOURS);
+					});
 				});
 			}
 			mounted = true;
@@ -40,6 +44,7 @@ function WeatherDisplay({ userOptions }) {
 	});
 
 	const data = weatherData[actualInterval];
+	console.warn(data);
 
 	return (
 		<Screen>
