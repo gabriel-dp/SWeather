@@ -1,7 +1,7 @@
 <br/><br/>
 
 <p align=center>
-    <img width=125 src='./docs/logo.svg'/>
+    <img width=125 src='./docs/logo.png'/>
 </p>
 
 <h1 align=center>SWeather</h1>
