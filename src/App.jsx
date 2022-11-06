@@ -25,14 +25,10 @@ function App() {
 	};
 
 	return (
-		<div>
-			{userOptions && (
-				<WeatherDisplay
-					userOptions={userOptions}
-					handleChangeUserOptions={handleChangeUserOptions}
-				/>
-			)}
-		</div>
+		<WeatherDisplay
+			userOptions={userOptions}
+			handleChangeUserOptions={handleChangeUserOptions}
+		/>
 	);
 }
 
