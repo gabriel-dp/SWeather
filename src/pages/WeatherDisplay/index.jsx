@@ -11,6 +11,7 @@ import getGeolocation from '../../utils/locationUtils';
 import WeatherBackground from '../../components/WeatherBackground';
 import WeatherImage from '../../components/WeatherImage';
 import TimeSlider from '../../components/TimeSlider';
+import LocationStatus from '../../components/LocationStatus';
 
 import { Screen, DataText, DataIcon } from './styles';
 
@@ -20,15 +21,18 @@ function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 		setActualInterval(value);
 	};
 
+	const [weatherData, setWeatherData] = useBrowserStorage('previousAPIdata', [], 'session');
+
+	// gets user location to request weather data
 	useEffect(() => {
-		if (userOptions.local.address.city === '') {
+		if (weatherData.length === 0 && userOptions.local.status === 'waiting') {
 			getGeolocation(userOptions, handleChangeUserOptions);
 		}
-	}, [userOptions, handleChangeUserOptions]);
+	}, [userOptions, handleChangeUserOptions, weatherData]);
 
-	const [weatherData, setWeatherData] = useBrowserStorage('previousAPIdata', [], 'session');
+	// gets weather data only after have user location
 	useEffect(() => {
-		if (userOptions.local.address.city !== '') {
+		if (userOptions.local.status === 'finished') {
 			const previousDataIsValid =
 				weatherData.length === userOptions.timeInterval * 2 + 1 && // checks if previous data is valid and checks interval changes
 				getTimeNow().raw.getTime() <
@@ -45,37 +49,43 @@ function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 
 	const data = weatherData[actualInterval];
 
+	if (weatherData.length === 0) {
+		return (
+			<Screen>
+				<LocationStatus status={userOptions.local.status} />
+			</Screen>
+		);
+	}
+
 	return (
 		<Screen>
-			{weatherData.length !== 0 && (
-				<WeatherBackground weatherData={data}>
-					<DataText size={3}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
-					<WeatherImage weatherData={data} />
-					<DataText size={2}>{data.local.time}</DataText>
-					<DataText size={1.25}>
-						<DataIcon size={1}>
-							<WiStrongWind />
-						</DataIcon>
-						&nbsp;{DisplaySpeed(data.windSpeed, userOptions.units)}
-						&nbsp;&nbsp;&nbsp;
-						<DataIcon size={1}>
-							<WiHumidity />
-						</DataIcon>
-						&nbsp;
-						{data.humidity}%
-					</DataText>
-					<TimeSlider
-						timeInterval={userOptions.timeInterval}
-						actualInterval={actualInterval}
-						handleChangeActualInterval={handleChangeActualInterval}
-					/>
-					<DataText size={1}>
-						{data.local.city}
-						<br />
-						{data.local.state_province_area} - {data.local.country}
-					</DataText>
-				</WeatherBackground>
-			)}
+			<WeatherBackground weatherData={data}>
+				<DataText size={3}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
+				<WeatherImage weatherData={data} />
+				<DataText size={2}>{data.local.time}</DataText>
+				<DataText size={1.25}>
+					<DataIcon size={1}>
+						<WiStrongWind />
+					</DataIcon>
+					&nbsp;{DisplaySpeed(data.windSpeed, userOptions.units)}
+					&nbsp;&nbsp;&nbsp;
+					<DataIcon size={1}>
+						<WiHumidity />
+					</DataIcon>
+					&nbsp;
+					{data.humidity}%
+				</DataText>
+				<TimeSlider
+					timeInterval={userOptions.timeInterval}
+					actualInterval={actualInterval}
+					handleChangeActualInterval={handleChangeActualInterval}
+				/>
+				<DataText size={1}>
+					{data.local.city}
+					<br />
+					{data.local.state_province_area} - {data.local.country}
+				</DataText>
+			</WeatherBackground>
 		</Screen>
 	);
 }

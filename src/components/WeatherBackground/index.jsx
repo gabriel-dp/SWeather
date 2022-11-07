@@ -3,8 +3,8 @@ import MainBackground from './styles';
 function WeatherBackground({ weatherData, children }) {
 	return (
 		<MainBackground
-			brightness={weatherData.background.brightness}
-			grayscale={weatherData.background.grayscale}
+			brightness={weatherData ? weatherData.background.brightness : 50}
+			grayscale={weatherData ? weatherData.background.grayscale : 0}
 		>
 			{children}
 		</MainBackground>

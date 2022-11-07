@@ -6,6 +6,7 @@ function App() {
 		'userOptions',
 		{
 			local: {
+				status: 'waiting',
 				coords: [],
 				address: {
 					city: '',

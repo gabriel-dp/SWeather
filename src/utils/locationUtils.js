@@ -17,6 +17,14 @@ function changeUserLocal(data, userOptions, handleChangeUserOptions) {
 	handleChangeUserOptions(newOptions);
 }
 
+function changeStatus(userOptions, handleChangeUserOptions) {
+	if (userOptions.local.status === 'waiting') {
+		const newOptions = userOptions;
+		newOptions.local.status = 'loading';
+		handleChangeUserOptions(newOptions);
+	}
+}
+
 async function getGeolocation(userOptions, handleChangeUserOptions) {
 	if (!navigator.geolocation) {
 		console.error('Geolocation is not supported by your browser');
@@ -24,10 +32,12 @@ async function getGeolocation(userOptions, handleChangeUserOptions) {
 	}
 
 	function success(position) {
+		changeStatus(userOptions, handleChangeUserOptions);
 		const { latitude } = position.coords;
 		const { longitude } = position.coords;
 		requestReverseGeolocation(latitude, longitude).then((response) => {
 			const data = {
+				status: 'finished',
 				coords: [latitude, longitude],
 				address: {
 					city: response.data.name,
