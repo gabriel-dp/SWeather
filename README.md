@@ -8,7 +8,7 @@
 
 <br/>
 <p align=center>
-    <a href='https://gabrieldp23.github.io/SWeather/'>gabrieldp23.github.io/SWeather/</a>
+    <a href='https://gabriel-dp.github.io/SWeather/'>gabriel-dp.github.io/SWeather/</a>
     <br/><br/>
     <img height=30 src='https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black'>
     &nbsp;
@@ -53,7 +53,7 @@ The project uses data from Tomorrow.io, a great and free Weather API.
 
 ```bash
 # Clone repository
-git clone https://gabrieldp23.github.io/SWeather/.git
+git clone https://gabriel-dp.github.io/SWeather/.git
 
 # Install node modules
 npm install
