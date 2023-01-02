@@ -1,3 +1,5 @@
 {
-	"**/*.+(jsx|js)": ["npx eslint"]
+	"**/*.+(jsx|js)": [
+		"npx eslint"
+	]
 }
