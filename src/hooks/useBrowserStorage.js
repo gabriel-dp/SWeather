@@ -18,10 +18,10 @@ function useBrowserStorage(key, initialValue, mode) {
 				if (mode === 'local') localStorage.setItem(key, JSON.stringify(value));
 				else sessionStorage.setItem(key, JSON.stringify(value));
 			} catch (error) {
-				console.error(error);
+				console.error('Error in data storage: ', error);
 			}
 		},
-		[key]
+		[key, mode]
 	);
 
 	return [state, setValue];
