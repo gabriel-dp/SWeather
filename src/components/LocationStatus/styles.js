@@ -1,18 +1,19 @@
 import styled, { keyframes } from 'styled-components';
+import { IoLocationSharp } from 'react-icons/io5';
 
 export const LocationContainer = styled.div`
 	color: #fff;
+	font-size: 1.5rem;
+
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	gap: 1rem;
+`;
 
-	span {
-		font-size: 5rem;
-	}
-
-	p {
-		font-size: 1.5rem;
-	}
+export const LocationSymbol = styled(IoLocationSharp)`
+	color: #fff;
+	font-size: 5rem;
 `;
 
 export const LoadingAnimation = keyframes`

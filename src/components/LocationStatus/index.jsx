@@ -1,26 +1,21 @@
-import { IoLocationSharp } from 'react-icons/io5';
 import WeatherBackground from '../WeatherBackground';
 
-import { LocationContainer, LoadingSymbol } from './styles';
+import { LocationContainer, LocationSymbol, LoadingSymbol } from './styles';
+
+function WaitingUserLocation() {
+	const message = 'Please, allow location access.';
+	return (
+		<LocationContainer>
+			<LocationSymbol />
+			<span>{message}</span>
+		</LocationContainer>
+	);
+}
 
 function LocationStatus({ status }) {
-	const message = 'Please, allow location access.';
+	const displayElement = status === 'waiting' ? <WaitingUserLocation /> : <LoadingSymbol />;
 
-	return (
-		<WeatherBackground>
-			<LocationContainer>
-				{status === 'waiting' && (
-					<>
-						<span>
-							<IoLocationSharp />
-						</span>
-						<p>{message}</p>
-					</>
-				)}
-				{status === 'loading' && <LoadingSymbol />}
-			</LocationContainer>
-		</WeatherBackground>
-	);
+	return <WeatherBackground>{displayElement}</WeatherBackground>;
 }
 
 export default LocationStatus;

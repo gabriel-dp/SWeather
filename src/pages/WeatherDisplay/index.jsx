@@ -59,7 +59,10 @@ function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 
 	return (
 		<Screen>
-			<WeatherBackground weatherData={data}>
+			<WeatherBackground
+				brightness={data.background.brightness}
+				grayscale={data.background.grayscale}
+			>
 				<DataText size={3}>{DisplayTemperature(data.temperature, userOptions.units)}</DataText>
 				<WeatherImage weatherData={data} />
 				<DataText size={2}>{data.local.time}</DataText>
