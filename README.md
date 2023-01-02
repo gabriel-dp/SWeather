@@ -1,4 +1,4 @@
-<br/><br/>
+<br/>
 
 <p align=center>
     <img width=125 src='./docs/logo.png'/>
@@ -41,11 +41,11 @@ Try it yourself!
 
 ## ⚙️ API
 
-The project uses data from Tomorrow.io, a great and free Weather API.
-
-![tomorrowio_logo](https://www.tomorrow.io/wp-content/uploads/2021/04/tomorrow-logo-colored.svg)
+The project uses data from **_Tomorrow.io_**, a great and free Weather API.
 
 > [Access the official website](https://www.tomorrow.io)
+
+> [Access the official repository](https://github.com/tomorrow-io-API)
 
 &nbsp;
 
