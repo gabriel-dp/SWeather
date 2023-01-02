@@ -55,8 +55,14 @@ The project uses data from **_Tomorrow.io_**, a great and free Weather API.
 # Clone repository
 git clone https://gabriel-dp.github.io/SWeather/.git
 
-# Install node modules
+# Install node_modules
 npm install
+
+# Enable pre-commit hook
+npm run prepare
+
+# Define API key in .env
+VITE_API_KEY=tomorrow.io
 
 # Run local server
 npm run dev
