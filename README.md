@@ -6,9 +6,8 @@
 
 <h1 align=center>SWeather</h1>
 
-<br/>
 <p align=center>
-    <a href='https://gabriel-dp.github.io/SWeather/'>gabriel-dp.github.io/SWeather/</a>
+    <a href='https://sweather.vercel.app/'>sweather.vercel.app</a>
     <br/><br/>
     <img height=30 src='https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black'>
     &nbsp;
@@ -17,6 +16,8 @@
     <img height=30 src='https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'>
     &nbsp;
     <img height=30 src='https://img.shields.io/badge/ESLINT-4B32C3?style=for-the-badge&logo=eslint&logoColor=white'>
+    &nbsp;
+    <img height=30 src='https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white'>
 </p>
 
 &nbsp;
@@ -62,7 +63,7 @@ npm install
 npm run prepare
 
 # Define API key in .env
-VITE_API_KEY=tomorrow.io
+VITE_API_KEY={key}
 
 # Run local server
 npm run dev
