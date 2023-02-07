@@ -1,5 +1,6 @@
 import { grayscaleFormula, brightnessFormula } from './backgroundFormulas';
 import { fixDecimal } from '../unitsUtils';
+import { compareHoursMinutes } from '../timeUtils';
 
 const fixRawData = (rawData) => {
 	const tempData = [];
@@ -13,10 +14,8 @@ const fixRawData = (rawData) => {
 
 const handleInterval = (weatherData, sunTimes, userOptions) => {
 	// converts all times in milliseconds to use in operations
-	const time = new Date(weatherData.time).getTime();
-	const { values } = sunTimes[0];
-	const sunriseTime = new Date(values.sunriseTime).getTime();
-	const sunsetTime = new Date(values.sunsetTime).getTime();
+	const { time } = weatherData;
+	const { sunriseTime, sunsetTime } = sunTimes[0].values;
 
 	const localData = new Date(weatherData.time);
 	const localTime = localData.toLocaleString('en-US', {
@@ -28,7 +27,7 @@ const handleInterval = (weatherData, sunTimes, userOptions) => {
 
 	const intervalHandledData = {
 		time: weatherData.time,
-		isDay: time > sunriseTime && time < sunsetTime,
+		isDay: compareHoursMinutes(time, sunriseTime) && compareHoursMinutes(sunsetTime, time),
 		temperature: fixDecimal(weatherData.temperature, 1),
 		humidity: weatherData.humidity,
 		cloudCover: weatherData.cloudCover,
@@ -52,6 +51,7 @@ const handleInterval = (weatherData, sunTimes, userOptions) => {
 			country: userOptions.local.address.country,
 		},
 	};
+
 	return intervalHandledData;
 };
 

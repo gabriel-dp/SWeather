@@ -19,4 +19,19 @@ const getISOIntervalFromNow = (variation) => {
 	return interval;
 };
 
-export { convertDateToISO, getTimeNow, getISOIntervalFromNow };
+const minutesFromTime = (time) => {
+	const dateTime = new Date(time);
+	return dateTime.getHours() * 60 + dateTime.getMinutes();
+};
+
+const compareHoursMinutes = (time1, time2) => {
+	return minutesFromTime(time1) > minutesFromTime(time2);
+};
+
+export {
+	convertDateToISO,
+	getTimeNow,
+	getISOIntervalFromNow,
+	minutesFromTime,
+	compareHoursMinutes,
+};
