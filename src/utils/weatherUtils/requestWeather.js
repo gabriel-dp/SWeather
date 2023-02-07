@@ -1,28 +1,8 @@
 import axios from 'axios';
-import { getISOIntervalFromNow } from '../timeUtils';
+import requestOptions from './requestOptions';
 
-async function getRawData(timeInterval, coords) {
-	const options = {
-		apikey: import.meta.env.VITE_API_KEY,
-		fields: [
-			'windSpeed',
-			'temperature',
-			'humidity',
-			'cloudCover',
-			'sunriseTime',
-			'sunsetTime',
-			'rainIntensity',
-			'freezingRainIntensity',
-			'snowIntensity',
-			'precipitationType',
-			'weatherCode', // get thunderstorms
-			'precipitationProbability',
-		],
-		location: coords,
-		interval: getISOIntervalFromNow(timeInterval),
-		timesteps: '1h',
-		units: 'metric',
-	};
+export default async function getRawData(timeInterval, coords) {
+	const options = requestOptions(timeInterval, coords);
 
 	const url = `https://api.tomorrow.io/v4/timelines/?location=${options.location.join()}&fields=${options.fields.join()}&timesteps=${
 		options.timesteps
@@ -36,5 +16,3 @@ async function getRawData(timeInterval, coords) {
 
 	return dataPromise;
 }
-
-export default getRawData;

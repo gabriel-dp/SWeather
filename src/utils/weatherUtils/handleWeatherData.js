@@ -11,11 +11,12 @@ const fixRawData = (rawData) => {
 	return tempData;
 };
 
-const handleInterval = (weatherData, userOptions) => {
+const handleInterval = (weatherData, sunTimes, userOptions) => {
 	// converts all times in milliseconds to use in operations
 	const time = new Date(weatherData.time).getTime();
-	const sunriseTime = new Date(weatherData.sunriseTime).getTime();
-	const sunsetTime = new Date(weatherData.sunsetTime).getTime();
+	const { values } = sunTimes[0];
+	const sunriseTime = new Date(values.sunriseTime).getTime();
+	const sunsetTime = new Date(values.sunsetTime).getTime();
 
 	const localData = new Date(weatherData.time);
 	const localTime = localData.toLocaleString('en-US', {
@@ -54,10 +55,10 @@ const handleInterval = (weatherData, userOptions) => {
 	return intervalHandledData;
 };
 
-function handleWeatherData(rawData, userOptions) {
+function handleWeatherData(rawData, sunTimes, userOptions) {
 	const handledData = [];
 	fixRawData(rawData).forEach((interval) => {
-		handledData.push(handleInterval(interval, userOptions));
+		handledData.push(handleInterval(interval, sunTimes, userOptions));
 	});
 	return handledData;
 }

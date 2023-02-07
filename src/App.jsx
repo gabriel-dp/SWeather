@@ -15,7 +15,7 @@ function App() {
 				},
 			},
 			units: 'metric',
-			timeInterval: 6,
+			timeInterval: 5,
 		},
 		'session'
 	);

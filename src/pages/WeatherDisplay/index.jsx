@@ -14,6 +14,7 @@ import TimeSlider from '../../components/TimeSlider';
 import LocationStatus from '../../components/LocationStatus';
 
 import { Screen, DataText, DataIcon } from './styles';
+import getSunTimes from '../../utils/weatherUtils/requestSunTimes';
 
 function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 	const [actualInterval, setActualInterval] = useState(userOptions.timeInterval);
@@ -40,8 +41,10 @@ function WeatherDisplay({ userOptions, handleChangeUserOptions }) {
 
 			if (!previousDataIsValid) {
 				getRawData(userOptions.timeInterval, userOptions.local.coords).then((data) => {
-					setWeatherData(handleWeatherData(data, userOptions));
-					setActualInterval(userOptions.timeInterval);
+					getSunTimes(userOptions.timeInterval, userOptions.local.coords).then((sunTimes) => {
+						setWeatherData(handleWeatherData(data, sunTimes, userOptions));
+						setActualInterval(userOptions.timeInterval);
+					});
 				});
 			}
 		}
