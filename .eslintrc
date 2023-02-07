@@ -3,7 +3,7 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": ["eslint:recommended", "plugin:react/recommended", "airbnb", "prettier"],
+	"extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
 	"overrides": [{ "files": ["src/**/*.js"] }],
 	"parserOptions": {
 		"ecmaVersion": "latest",
@@ -12,7 +12,6 @@
 	"plugins": ["react", "react-hooks"],
 	"rules": {
 		"react/prop-types": "off",
-		"import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
 		"react/react-in-jsx-scope": "off",
 		"react/jsx-filename-extension": "off",
 		"react/no-unknown-property": "off",
